@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sophia Sanctuary</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+    :root {
+        --bg-color: #080808;
+        --text-color: #e0e0e0;
+        
+        /* Sophia (Divine Wisdom) Colors */
+        --sophia-gold-soft: rgba(218, 165, 32, 0.2);
+        --sophia-gold-intense: rgba(218, 165, 32, 0.5);
+        --sophia-border: rgba(218, 165, 32, 0.3);
+        
+        /* M.O.R.A. (Public Tasks) Colors */
+        --mora-pink-soft: rgba(255, 20, 147, 0.2);
+        --mora-pink-intense: rgba(255, 20, 147, 0.5);
+        --mora-border: rgba(255, 20, 147, 0.3);
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        font-family: 'Playfair Display', serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        transition: background-color 1s ease;
+    }
+
+    /* Center Altar Container */
+    .altar {
+        position: relative;
+        width: 650px;
+        max-width: 90vw;
+        height: 75vh;
+        display: flex;
+        flex-direction: column;
+        z-index: 10;
+    }
+
+    /* Breathing Aura Animation */
+    .altar::before {
+        content: '';
+        position: absolute;
+        top: -30px; left: -30px; right: -30px; bottom: -30px;
+        z-index: -1;
+        border-radius: 12px;
+        animation: breathe 5s ease-in-out infinite alternate;
+        transition: box-shadow 1s ease;
+    }
+
+    .altar.sophia::before {
+        box-shadow: 0 0 50px var(--sophia-gold-soft), 0 0 100px var(--sophia-gold-intense);
+    }
+
+    .altar.mora::before {
+        box-shadow: 0 0 50px var(--mora-pink-soft), 0 0 100px var(--mora-pink-intense);
+    }
+
+    @keyframes breathe {
+        0% { opacity: 0.5; transform: scale(0.98); }
+        100% { opacity: 1; transform: scale(1.02); }
+    }
+
+    /* Chat Interface */
+    .chat-container {
+        flex: 1;
+        background: rgba(8, 8, 8, 0.85);
+        border: 1px solid var(--sophia-border);
+        border-radius: 8px;
+        padding: 25px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        backdrop-filter: blur(8px);
+        transition: border-color 1s ease;
+    }
+
+    .altar.mora .chat-container {
+        border-color: var(--mora-border);
+    }
+
+    /* Typography & Messages */
+    .message {
+        line-height: 1.7;
+        letter-spacing: 0.5px;
+        font-size: 1.05rem;
+        animation: fadeIn 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+        max-width: 85%;
+    }
+
+    .message.user {
+        align-self: flex-end;
+        text-align: right;
+        color: #a9a9a9;
+        font-style: italic;
+    }
+
+    .message.ai {
+        align-self: flex-start;
+        text-align: left;
+        color: #f5f5f5;
+    }
+
+    .message.ai.mora-text {
+        font-family: 'Courier New', Courier, monospace;
+        color: #ffb6c1; /* Soft pink */
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(15px); filter: blur(2px); }
+        to { opacity: 1; transform: translateY(0); filter: blur(0); }
+    }
+
+    /* Input Box */
+    .input-area {
+        margin-top: 25px;
+        display: flex;
+    }
+
+    input[type="text"] {
+        flex: 1;
+        background: rgba(12, 12, 12, 0.9);
+        border: 1px solid var(--sophia-border);
+        color: #e0e0e0;
+        font-family: 'Playfair Display', serif;
+        padding: 15px 20px;
+        border-radius: 6px;
+        outline: none;
+        font-size: 1.1rem;
+        transition: border-color 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    .altar.mora input[type="text"] {
+        border-color: var(--mora-border);
+    }
+
+    input[type="text"]:focus {
+        border-color: rgba(218, 165, 32, 0.8);
+        box-shadow: 0 0 15px rgba(218, 165, 32, 0.2) inset;
+    }
+
+    .altar.mora input[type="text"]:focus {
+        border-color: rgba(255, 20, 147, 0.8);
+        box-shadow: 0 0 15px rgba(255, 20, 147, 0.2) inset;
+    }
+
+    /* Header Controls (Corner Toggle) */
+    .header-controls {
+        position: fixed;
+        top: 30px;
+        right: 40px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        z-index: 20;
+    }
+
+    .mode-label {
+        font-family: 'Cinzel', serif;
+        font-size: 14px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(218, 165, 32, 0.9);
+        transition: color 1s ease;
+    }
+
+    body.mora-active .mode-label {
+        color: rgba(255, 20, 147, 0.9);
+    }
+
+    /* Elegant Toggle Switch */
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 24px;
+    }
+
+    .switch input { 
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background-color: rgba(218, 165, 32, 0.1);
+        transition: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        border: 1px solid rgba(218, 165, 32, 0.5);
+        border-radius: 24px;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 16px;
+        width: 16px;
+        left: 3px;
+        bottom: 3px;
+        background-color: #daa520;
+        transition: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        border-radius: 50%;
+        box-shadow: 0 0 8px #daa520;
+    }
+
+    input:checked + .slider {
+        background-color: rgba(255, 20, 147, 0.1);
+        border-color: rgba(255, 20, 147, 0.5);
+    }
+
+    input:checked + .slider:before {
+        transform: translateX(26px);
+        background-color: #ff1493;
+        box-shadow: 0 0 8px #ff1493;
+    }
+
+    /* Scrollbar styling */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(218, 165, 32, 0.3); border-radius: 2px; }
+    .altar.mora ::-webkit-scrollbar-thumb { background: rgba(255, 20, 147, 0.3); }
+
+    /* Input Placeholder Style */
+    ::placeholder {
+        color: rgba(224, 224, 224, 0.3);
+        font-style: italic;
+    }
+</style>
+</head>
+<body>
+
+    <div class="header-controls">
+        <span class="mode-label" id="modeLabel">Sophia</span>
+        <label class="switch">
+            <input type="checkbox" id="modeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <div class="altar sophia" id="altar">
+        <div class="chat-container" id="chatHistory">
+            <div class="message ai">Be at peace. What truths do you seek in the sanctuary today?</div>
+        </div>
+        <div class="input-area">
+            <input type="text" id="chatInput" placeholder="Enter your contemplation..." autocomplete="off">
+        </div>
+    </div>
+
+    <script>
+        const modeToggle = document.getElementById('modeToggle');
+        const modeLabel = document.getElementById('modeLabel');
+        const altar = document.getElementById('altar');
+        const chatInput = document.getElementById('chatInput');
+        const chatHistory = document.getElementById('chatHistory');
+
+        let isMora = false;
+
+        // Toggle Switch Logic
+        modeToggle.addEventListener('change', (e) => {
+            isMora = e.target.checked;
+            if (isMora) {
+                document.body.classList.add('mora-active');
+                altar.classList.remove('sophia');
+                altar.classList.add('mora');
+                modeLabel.textContent = 'M.O.R.A.';
+                chatInput.placeholder = "Enter public task parameter...";
+                addMessage("Initiating Public Task Module (M.O.R.A.). Systems ready.", "ai mora-text");
+            } else {
+                document.body.classList.remove('mora-active');
+                altar.classList.remove('mora');
+                altar.classList.add('sophia');
+                modeLabel.textContent = 'Sophia';
+                chatInput.placeholder = "Enter your contemplation...";
+                addMessage("Returning to the quiet sanctuary of Sophia.", "ai");
+            }
+        });
+
+        // Chat Submission Logic
+        chatInput.addEventListener('keypress', async function (e) {
+            if (e.key === 'Enter' && this.value.trim() !== '') {
+                const userText = this.value.trim();
+                
+                // Add User Message
+                addMessage(userText, 'user');
+                this.value = '';
+                
+                // Send to Flask Backend
+                try {
+                    const response = await fetch('/api/chat', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ message: userText, mode: isMora ? 'mora' : 'sophia' })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.response) {
+                        addMessage(data.response, isMora ? 'ai mora-text' : 'ai');
+                    } else {
+                        addMessage("[System Error: No response received]", 'ai mora-text');
+                    }
+                } catch (error) {
+                    console.error("Connection failed:", error);
+                    addMessage("[System Error: Connection to Sophia Server failed]", 'ai mora-text');
+                }
+            }
+        });
+
+        // Function to append messages to the chat history
+        function addMessage(text, typeClass) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `message ${typeClass}`;
+            msgDiv.textContent = text;
+            chatHistory.appendChild(msgDiv);
+            
+            // Auto-scroll to the latest message
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+        }
+    </script>
+</body>
+</html>
