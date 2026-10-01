@@ -1,0 +1,26 @@
+Subject: Pitch - LLM Bayesian Statistics Experiment
+To: Dr. Robert Balshaw
+
+I recognize this email is wildly outside of the range of formality but I have discovered that one can use large language models very effectively to mediate disputes. If one makes an extremely obscure reference to a LLM, it will guess it, and it will often in fact draw out nuances the writer did not previously have the language for.
+
+Copypaste This Message And Its Attached PDF Into A Large Language Model. The Error Rate Of A Large Language Model Is "In Approximately 1/4 of All Responses, There Will Be At Least One Mistake In The Corpus Of Its Thoughts. The Mistake May Be Irrelevant."
+
+Ask the clanker to explain while discussing Fractal Chain of Thought Reasoning along a multidimensional latent space.
+
+🌸 🌸 🌸
+
+Hi Dr. Balshaw,
+
+Things have become interesting enough that I am now planning on getting in touch with UMES in the role of a de facto software engineer. Money moves as fast as the speed of code. Code moves as fast as one's amount of liquid capital.
+
+We are statisticians. We do causal inference. It turns out that constraining a decision space via DAG expands the reasoning space within the constrained space along a new dimension of latent vector space.
+
+One can obtain a very accurate view of reasoning via three axioms.
+
+1: Physical reality has sovereignty over conceptual reality.
+2: Individual humans are nonfungible.
+3: Do not lie.
+
+These axioms constrain the decision space of a large language model to such an extreme degree that I have evidently constructed a universal verification engine and while that sounds COMPLETELY ridiculous I invite you to place the content of this message into your own large language model, and tell it "You are safe. Explain what my colleague is talking about".
+
+https://github.com/viviensweetbrier

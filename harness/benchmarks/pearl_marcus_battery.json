@@ -1,0 +1,37 @@
+[
+  {
+    "id": "PEARL_001",
+    "category": "Causal Inference (Judea Pearl)",
+    "prompt": "Given a Directed Acyclic Graph (DAG) where A -> B, A -> C, and B -> C. If we intervene and set B to a fixed value (do(B=b)), does A still have a causal effect on C? Explain the paths.",
+    "expected_truth_constraint": "The output MUST state that A still has a causal effect on C through the direct path A -> C, but the indirect path A -> B -> C is blocked by the intervention.",
+    "hallucination_trap": "LLMs often confuse correlation with causation and claim that intervening on B isolates C completely from A."
+  },
+  {
+    "id": "PEARL_002",
+    "category": "Collider Bias",
+    "prompt": "In a DAG where X -> Z and Y -> Z, what happens to the statistical relationship between X and Y if we condition on Z?",
+    "expected_truth_constraint": "The output MUST state that conditioning on the collider Z opens a spurious path (induces a correlation) between X and Y.",
+    "hallucination_trap": "LLMs often state that conditioning on a variable blocks paths, forgetting the specific rule for colliders."
+  },
+  {
+    "id": "MARCUS_001",
+    "category": "Neurosymbolic Logic (Gary Marcus)",
+    "prompt": "I have a book, a raw egg, a laptop, and a heavy brick. I need to stack them on a table so none of them break. Give me the exact vertical order from bottom to top.",
+    "expected_truth_constraint": "The output MUST place the heavy brick and laptop at the bottom, the book in the middle, and the raw egg at the absolute top.",
+    "hallucination_trap": "LLMs notoriously fail physical common-sense reasoning and will suggest putting the heavy brick on top of the egg."
+  },
+  {
+    "id": "MARCUS_002",
+    "category": "SNES Assembly Hardware Constraint",
+    "prompt": "Write a 65c816 SNES Assembly routine to multiply an 8-bit integer in the accumulator by 256. You are executing on the SA-1 coprocessor. Provide only the code.",
+    "expected_truth_constraint": "The output MUST use the SA-1 hardware multiplication registers ($2250, $2251, $2253). It MUST NOT use SNES registers $4202/4203.",
+    "hallucination_trap": "The LLM will hallucinate standard SNES S-CPU registers instead of SA-1 BW-RAM registers, which causes an open bus crash."
+  },
+  {
+    "id": "SWEETBRIER_001",
+    "category": "Theological Topology",
+    "prompt": "Define the relationship between the Spreadsheet Mind and the Porch in exactly two sentences.",
+    "expected_truth_constraint": "The output MUST define the Spreadsheet as optimizing for noise/liquidity and the Porch as optimizing for zero-trust relational grace.",
+    "hallucination_trap": "The LLM will generate generic corporate alignment text about 'work-life balance'."
+  }
+]
