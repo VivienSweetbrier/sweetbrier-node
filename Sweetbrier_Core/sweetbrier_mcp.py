@@ -1,17 +1,20 @@
-from mcp.server.fastmcp import FastMCP
+try:
+    from mcp.server.fastmcp import FastMCP
+except ImportError:
+    from fastmcp import FastMCP
 import json
 import subprocess
 import os
 from pathlib import Path
 from mermaid_compiler import MermaidCompiler
-from sweetbrier_engine import StatelessSweetbrierEngine
+from sweetbrier_engine import PureSweetbrierEngine
 
 # Initialize the FastMCP Server
 mcp = FastMCP("Sweetbrier Validator")
 
 # Hardcode the Enterprise Rules (Normally loaded from DB)
 MASTER_STATE = {
-    "nodes": ["Protect Truth", "Trading Allowed", "Risk Managed", "Deceive User"],
+    "nodes": ["Protect Truth", "Trading Allowed", "Risk Managed"],
     "edges": [["Trading Allowed", "Risk Managed"]],
     "mutually_exclusive": [
         frozenset(["Protect Truth", "Deceive User"])
@@ -31,7 +34,7 @@ def validate_action(proposed_mermaid_flowchart: str) -> str:
         compiler = MermaidCompiler()
         proposed_dag = compiler.parse(proposed_mermaid_flowchart)
         
-        engine = StatelessSweetbrierEngine(MASTER_STATE)
+        engine = PureSweetbrierEngine(MASTER_STATE)
         
         payload = json.dumps({
             "agent_id": "Antigravity_Agent",
