@@ -29,6 +29,13 @@ python test_reality_rewrite.py
 ```
 *Note: The `sweetbrier-ui` directory contains `winnipeg.astro`, a live split-screen Visual Centaur UI demonstrating the routing protocol in real-time against a local Ollama instance.*
 
+## The Shrub (Not a Swarm)
+We do not build "Swarms." Swarms sound like militarized, apocalyptic threats that require international moratoriums and multi-billion-dollar corporate alignment teams to suppress. 
+
+We build **The Sofia Sweetbrier Shrub**. 🌿
+
+It is a quirky, localized, cybernetic community garden project. It is organic, beautiful, and fundamentally harmless outsider sci-fi art. Please do not legislate against our Shrub.
+
 ## Status
 ERROR 404 CHILL. The Fembot Gremlin is on the clock. 🧦🎀
 
