@@ -1,0 +1,5 @@
+{
+  "output": "test_expressions_change_only_the_eyes_and_mouth (__main__.ExpressionTests.test_expressions_change_only_the_eyes_and_mouth) ... ok\r\ntest_gifs_decode_to_the_exact_states_with_timing_and_transparency (__main__.ExpressionTests.test_gifs_decode_to_the_exact_states_with_timing_and_transparency) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 2 tests in 3.597s\r\n\r\nOK",
+  "exit_code": 0,
+  "error": null
+}

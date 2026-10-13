@@ -1,0 +1,286 @@
+{
+  "annotation_method": "Manual approximate tracing, followed by deterministic native-grid snapping",
+  "source": "C:\\Users\\Vivian\\Desktop\\ai pics\\SOPHYBOT.jpg",
+  "source_sha256": "2694f17508c91f3371f6ea266924bda6e7c190fb9bfce83f9c8f53e371109229",
+  "secondary_source": "C:/Users/Vivian/Desktop/ai pics/DASH DISCOVERS 42.jpg",
+  "secondary_source_sha256": "b746f74e7d32807f0dc6129a44f92e7f979bc6eea95aa798f1d7afea0c0b3b2c",
+  "canvas": [
+    64,
+    64
+  ],
+  "landmarks": {
+    "hair_crown": {
+      "source_pixel": [
+        497,
+        153
+      ],
+      "normalized_in_draft_frame": [
+        0.4421052631578947,
+        0.29473684210526313
+      ],
+      "native_pixel": [
+        28,
+        19
+      ]
+    },
+    "eye_viewer_left": {
+      "source_pixel": [
+        452,
+        326
+      ],
+      "normalized_in_draft_frame": [
+        0.3631578947368421,
+        0.5982456140350877
+      ],
+      "native_pixel": [
+        23,
+        38
+      ]
+    },
+    "eye_viewer_right": {
+      "source_pixel": [
+        565,
+        311
+      ],
+      "normalized_in_draft_frame": [
+        0.5614035087719298,
+        0.5719298245614035
+      ],
+      "native_pixel": [
+        36,
+        37
+      ]
+    },
+    "nose_tip": {
+      "source_pixel": [
+        507,
+        355
+      ],
+      "normalized_in_draft_frame": [
+        0.45964912280701753,
+        0.6491228070175439
+      ],
+      "native_pixel": [
+        29,
+        42
+      ]
+    },
+    "mouth_low_point": {
+      "source_pixel": [
+        514,
+        395
+      ],
+      "normalized_in_draft_frame": [
+        0.47192982456140353,
+        0.7192982456140351
+      ],
+      "native_pixel": [
+        30,
+        46
+      ]
+    },
+    "chin": {
+      "source_pixel": [
+        523,
+        423
+      ],
+      "normalized_in_draft_frame": [
+        0.48771929824561405,
+        0.7684210526315789
+      ],
+      "native_pixel": [
+        31,
+        49
+      ]
+    }
+  },
+  "colours_used_including_transparency": 12,
+  "palette_limit_including_transparency": 16,
+  "palette": {
+    "transparent": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "ink": [
+      0,
+      0,
+      0,
+      255
+    ],
+    "hair_deep": [
+      13,
+      12,
+      18,
+      255
+    ],
+    "hair_shadow": [
+      31,
+      30,
+      41,
+      255
+    ],
+    "hair_light": [
+      37,
+      35,
+      47,
+      255
+    ],
+    "hair_glint": [
+      74,
+      72,
+      85,
+      255
+    ],
+    "ivory": [
+      244,
+      244,
+      232,
+      255
+    ],
+    "face_shadow": [
+      165,
+      157,
+      178,
+      255
+    ],
+    "seam": [
+      110,
+      105,
+      125,
+      255
+    ],
+    "nose_red": [
+      210,
+      30,
+      45,
+      255
+    ],
+    "nose_shadow": [
+      181,
+      35,
+      53,
+      255
+    ],
+    "nose_light": [
+      252,
+      140,
+      112,
+      255
+    ]
+  },
+  "palette_measurements": {
+    "hair_deep": {
+      "source_box": [
+        385,
+        145,
+        635,
+        230
+      ],
+      "method": "channel medians within mean-RGB brightness band",
+      "brightness_band": [
+        8,
+        21
+      ],
+      "sample_count": 1121
+    },
+    "hair_shadow": {
+      "source_box": [
+        385,
+        145,
+        635,
+        230
+      ],
+      "method": "channel medians within mean-RGB brightness band",
+      "brightness_band": [
+        22,
+        37
+      ],
+      "sample_count": 3767
+    },
+    "hair_light": {
+      "source_box": [
+        385,
+        145,
+        635,
+        230
+      ],
+      "method": "channel medians within mean-RGB brightness band",
+      "brightness_band": [
+        38,
+        57
+      ],
+      "sample_count": 4589
+    },
+    "hair_glint": {
+      "source_box": [
+        385,
+        145,
+        635,
+        230
+      ],
+      "method": "channel medians within mean-RGB brightness band",
+      "brightness_band": [
+        58,
+        83
+      ],
+      "sample_count": 2012
+    },
+    "ivory": {
+      "source_box": [
+        534,
+        356,
+        537,
+        359
+      ],
+      "method": "3x3 channel median"
+    },
+    "face_shadow": {
+      "source_box": [
+        604,
+        359,
+        607,
+        362
+      ],
+      "method": "3x3 channel median"
+    },
+    "seam": {
+      "source_box": [
+        582,
+        373,
+        585,
+        376
+      ],
+      "method": "3x3 channel median"
+    },
+    "nose_red": {
+      "source_box": [
+        509,
+        348,
+        512,
+        351
+      ],
+      "method": "3x3 channel median"
+    },
+    "nose_shadow": {
+      "source_box": [
+        513,
+        356,
+        516,
+        359
+      ],
+      "method": "3x3 channel median"
+    },
+    "nose_light": {
+      "source_box": [
+        499,
+        344,
+        502,
+        347
+      ],
+      "method": "3x3 channel median"
+    }
+  },
+  "status": "Unapproved face-and-hair study; no animation or body"
+}

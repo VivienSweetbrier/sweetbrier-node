@@ -1,0 +1,119 @@
+{
+  "approved_64_sha256": "0227259bdf619a9b56963d9e4a30568c05da961509952e03a1358d2a91a98591",
+  "source_model_sha256": "1170a1d05974be7a62bb01fce654e3013e48e3a52c336e5952e0f083754bb88f",
+  "rendering_method": "128x128 rasterized directly from source-space shape data; never resized from 64x64",
+  "display_panel_size": [
+    512,
+    512
+  ],
+  "board_size": [
+    1096,
+    738
+  ],
+  "panels": [
+    {
+      "native_file": "sock_head_64.png",
+      "native_size": [
+        64,
+        64
+      ],
+      "top_left": [
+        24,
+        132
+      ],
+      "display_scale": 8
+    },
+    {
+      "native_file": "sock_head_128.png",
+      "native_size": [
+        128,
+        128
+      ],
+      "top_left": [
+        560,
+        132
+      ],
+      "display_scale": 4
+    }
+  ],
+  "native_pixels_different_from_2x_enlargement": 2385,
+  "native_64_palette_entries": 12,
+  "native_128_palette_entries": 12,
+  "palette_limit_including_transparency": 16,
+  "palette": {
+    "transparent": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "ink": [
+      0,
+      0,
+      0,
+      255
+    ],
+    "hair_deep": [
+      13,
+      12,
+      18,
+      255
+    ],
+    "hair_shadow": [
+      31,
+      30,
+      41,
+      255
+    ],
+    "hair_light": [
+      37,
+      35,
+      47,
+      255
+    ],
+    "hair_glint": [
+      74,
+      72,
+      85,
+      255
+    ],
+    "ivory": [
+      244,
+      244,
+      232,
+      255
+    ],
+    "face_shadow": [
+      165,
+      157,
+      178,
+      255
+    ],
+    "seam": [
+      110,
+      105,
+      125,
+      255
+    ],
+    "nose_red": [
+      210,
+      30,
+      45,
+      255
+    ],
+    "nose_shadow": [
+      181,
+      35,
+      53,
+      255
+    ],
+    "nose_light": [
+      252,
+      140,
+      112,
+      255
+    ]
+  },
+  "antialiasing": false,
+  "approval": "64x64 likeness accepted by user; 128x128 awaiting comparison feedback"
+}

@@ -1,0 +1,5 @@
+{
+  "output": "test_preview_is_exact_integer_nearest_neighbour (__main__.SpriteTests.test_preview_is_exact_integer_nearest_neighbour) ... ok\r\ntest_renders_a_transparent_64_pixel_head_within_16_entries (__main__.SpriteTests.test_renders_a_transparent_64_pixel_head_within_16_entries) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 2 tests in 0.528s\r\n\r\nOK",
+  "exit_code": 0,
+  "error": null
+}

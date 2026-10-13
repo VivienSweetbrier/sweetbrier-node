@@ -1,0 +1,5 @@
+{
+  "output": "test_preview_is_exact_integer_nearest_neighbour (__main__.SpriteTests.test_preview_is_exact_integer_nearest_neighbour) ... ok\r\ntest_renders_a_transparent_64_pixel_head_within_16_entries (__main__.SpriteTests.test_renders_a_transparent_64_pixel_head_within_16_entries) ... ok\r\ntest_review_board_retains_source_and_landmark_provenance (__main__.SpriteTests.test_review_board_retains_source_and_landmark_provenance) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 3 tests in 1.452s\r\n\r\nOK",
+  "exit_code": 0,
+  "error": null
+}

@@ -1,0 +1,260 @@
+{
+  "canvas": [
+    128,
+    128
+  ],
+  "scope": "Native eye/mouth patches over approved 128 head; no audio input, lip sync, body motion or full-frame flashing.",
+  "mouth_box": [
+    48,
+    84,
+    74,
+    98
+  ],
+  "states": {
+    "neutral": {
+      "label": "Neutral",
+      "eyes": "original",
+      "mouth": "original"
+    },
+    "blink_half": {
+      "label": "Half blink",
+      "eyes": "half",
+      "mouth": "original"
+    },
+    "blink_closed": {
+      "label": "Blink",
+      "eyes": "closed",
+      "mouth": "original"
+    },
+    "talk_small": {
+      "label": "Talk / small",
+      "eyes": "original",
+      "mouth": "small",
+      "polygon": [
+        [
+          56,
+          90
+        ],
+        [
+          58,
+          91
+        ],
+        [
+          61,
+          92
+        ],
+        [
+          64,
+          91
+        ],
+        [
+          67,
+          89
+        ],
+        [
+          66,
+          92
+        ],
+        [
+          63,
+          94
+        ],
+        [
+          60,
+          94
+        ],
+        [
+          57,
+          92
+        ]
+      ]
+    },
+    "talk_open": {
+      "label": "Talk / open",
+      "eyes": "original",
+      "mouth": "open",
+      "polygon": [
+        [
+          55,
+          90
+        ],
+        [
+          57,
+          91
+        ],
+        [
+          60,
+          92
+        ],
+        [
+          63,
+          91
+        ],
+        [
+          66,
+          90
+        ],
+        [
+          68,
+          88
+        ],
+        [
+          67,
+          92
+        ],
+        [
+          65,
+          94
+        ],
+        [
+          62,
+          95
+        ],
+        [
+          59,
+          95
+        ],
+        [
+          56,
+          93
+        ]
+      ]
+    },
+    "talk_round": {
+      "label": "Talk / round",
+      "eyes": "original",
+      "mouth": "round",
+      "bbox": [
+        59,
+        90,
+        64,
+        95
+      ]
+    },
+    "glitch": {
+      "label": "Stitched glitch",
+      "eyes": "right_cross",
+      "mouth": "jagged",
+      "line": [
+        [
+          50,
+          89
+        ],
+        [
+          53,
+          91
+        ],
+        [
+          55,
+          89
+        ],
+        [
+          58,
+          93
+        ],
+        [
+          60,
+          90
+        ],
+        [
+          63,
+          93
+        ],
+        [
+          65,
+          89
+        ],
+        [
+          68,
+          90
+        ],
+        [
+          70,
+          86
+        ],
+        [
+          72,
+          85
+        ]
+      ]
+    }
+  },
+  "timeline": [
+    {
+      "state": "neutral",
+      "ms": 1600
+    },
+    {
+      "state": "blink_half",
+      "ms": 90
+    },
+    {
+      "state": "blink_closed",
+      "ms": 120
+    },
+    {
+      "state": "blink_half",
+      "ms": 90
+    },
+    {
+      "state": "neutral",
+      "ms": 650
+    },
+    {
+      "state": "talk_small",
+      "ms": 120
+    },
+    {
+      "state": "talk_open",
+      "ms": 160
+    },
+    {
+      "state": "talk_small",
+      "ms": 90
+    },
+    {
+      "state": "talk_round",
+      "ms": 120
+    },
+    {
+      "state": "talk_small",
+      "ms": 100
+    },
+    {
+      "state": "talk_open",
+      "ms": 140
+    },
+    {
+      "state": "talk_small",
+      "ms": 90
+    },
+    {
+      "state": "neutral",
+      "ms": 700
+    },
+    {
+      "state": "glitch",
+      "ms": 160
+    },
+    {
+      "state": "neutral",
+      "ms": 100
+    },
+    {
+      "state": "glitch",
+      "ms": 200
+    },
+    {
+      "state": "neutral",
+      "ms": 1800
+    }
+  ],
+  "design_notes": [
+    "Talking is a silent expression loop, not microphone- or audio-driven lip sync.",
+    "Glitch is a stitched eye and jagged smile; no screen flash or global jitter.",
+    "Face seams remain in the underlying skin plate; nose and foreground hair are protected.",
+    "Native movements require inspection after rasterization; no character positions change.",
+    "Soft-talk v2: smaller, rounder, less theatrical mouth movement; neutral, blink and glitch unchanged.",
+    "Character direction from user: tiny outward presence contrasting with an exceptionally deep voice, referencing Circuit des Yeux but roboticized. No voice generation or settings changes in this pass."
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "output": "test_comparison_shows_both_native_rasters_at_equal_display_size (__main__.ResolutionComparisonTests.test_comparison_shows_both_native_rasters_at_equal_display_size) ... ok\r\ntest_native_128_is_new_raster_not_an_enlarged_64 (__main__.ResolutionComparisonTests.test_native_128_is_new_raster_not_an_enlarged_64) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 2 tests in 5.483s\r\n\r\nOK",
+  "exit_code": 0,
+  "error": null
+}

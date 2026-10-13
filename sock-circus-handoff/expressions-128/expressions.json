@@ -1,0 +1,262 @@
+{
+  "native_size": [
+    128,
+    128
+  ],
+  "states": [
+    "neutral",
+    "blink_half",
+    "blink_closed",
+    "talk_small",
+    "talk_open",
+    "talk_round",
+    "glitch"
+  ],
+  "palette": {
+    "transparent": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "ink": [
+      0,
+      0,
+      0,
+      255
+    ],
+    "hair_deep": [
+      13,
+      12,
+      18,
+      255
+    ],
+    "hair_shadow": [
+      31,
+      30,
+      41,
+      255
+    ],
+    "hair_light": [
+      37,
+      35,
+      47,
+      255
+    ],
+    "hair_glint": [
+      74,
+      72,
+      85,
+      255
+    ],
+    "ivory": [
+      244,
+      244,
+      232,
+      255
+    ],
+    "face_shadow": [
+      165,
+      157,
+      178,
+      255
+    ],
+    "seam": [
+      110,
+      105,
+      125,
+      255
+    ],
+    "nose_red": [
+      210,
+      30,
+      45,
+      255
+    ],
+    "nose_shadow": [
+      181,
+      35,
+      53,
+      255
+    ],
+    "nose_light": [
+      252,
+      140,
+      112,
+      255
+    ]
+  },
+  "baseline_sha256": "71170b8088336bfc1974c123faa8472d6e2746c127413dd339113195d959cb00",
+  "timeline": [
+    {
+      "state": "neutral",
+      "ms": 1600
+    },
+    {
+      "state": "blink_half",
+      "ms": 90
+    },
+    {
+      "state": "blink_closed",
+      "ms": 120
+    },
+    {
+      "state": "blink_half",
+      "ms": 90
+    },
+    {
+      "state": "neutral",
+      "ms": 650
+    },
+    {
+      "state": "talk_small",
+      "ms": 120
+    },
+    {
+      "state": "talk_open",
+      "ms": 160
+    },
+    {
+      "state": "talk_small",
+      "ms": 90
+    },
+    {
+      "state": "talk_round",
+      "ms": 120
+    },
+    {
+      "state": "talk_small",
+      "ms": 100
+    },
+    {
+      "state": "talk_open",
+      "ms": 140
+    },
+    {
+      "state": "talk_small",
+      "ms": 90
+    },
+    {
+      "state": "neutral",
+      "ms": 700
+    },
+    {
+      "state": "glitch",
+      "ms": 160
+    },
+    {
+      "state": "neutral",
+      "ms": 100
+    },
+    {
+      "state": "glitch",
+      "ms": 200
+    },
+    {
+      "state": "neutral",
+      "ms": 1800
+    }
+  ],
+  "scope": "Native eye/mouth patches over approved 128 head; no audio input, lip sync, body motion or full-frame flashing.",
+  "total_ms": 6330,
+  "changed_pixels": {
+    "neutral": 0,
+    "blink_half": 92,
+    "blink_closed": 160,
+    "talk_small": 54,
+    "talk_open": 88,
+    "talk_round": 90,
+    "glitch": 121
+  },
+  "native_gif_frames": 17,
+  "preview": {
+    "size": [
+      512,
+      512
+    ],
+    "background_colours": [
+      [
+        217,
+        213,
+        205,
+        255
+      ],
+      [
+        203,
+        200,
+        193,
+        255
+      ]
+    ],
+    "note": "Checkerboard adds two display-only colours; native sprites use only the approved palette."
+  },
+  "frame_layout": [
+    {
+      "state": "neutral",
+      "rect": [
+        0,
+        0,
+        128,
+        128
+      ]
+    },
+    {
+      "state": "blink_half",
+      "rect": [
+        128,
+        0,
+        128,
+        128
+      ]
+    },
+    {
+      "state": "blink_closed",
+      "rect": [
+        256,
+        0,
+        128,
+        128
+      ]
+    },
+    {
+      "state": "talk_small",
+      "rect": [
+        384,
+        0,
+        128,
+        128
+      ]
+    },
+    {
+      "state": "talk_open",
+      "rect": [
+        512,
+        0,
+        128,
+        128
+      ]
+    },
+    {
+      "state": "talk_round",
+      "rect": [
+        640,
+        0,
+        128,
+        128
+      ]
+    },
+    {
+      "state": "glitch",
+      "rect": [
+        768,
+        0,
+        128,
+        128
+      ]
+    }
+  ],
+  "sheet_size": [
+    896,
+    128
+  ]
+}

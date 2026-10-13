@@ -1,0 +1,316 @@
+{
+  "canvas": [
+    128,
+    128
+  ],
+  "scope": "Native eye/mouth patches over approved 128 head; no audio input, lip sync, body motion or full-frame flashing.",
+  "mouth_box": [
+    48,
+    84,
+    74,
+    98
+  ],
+  "states": {
+    "neutral": {
+      "label": "Neutral",
+      "eyes": "original",
+      "mouth": "original"
+    },
+    "blink_half": {
+      "label": "Half blink",
+      "eyes": "half",
+      "mouth": "original"
+    },
+    "blink_closed": {
+      "label": "Blink",
+      "eyes": "closed",
+      "mouth": "original"
+    },
+    "talk_small": {
+      "label": "Talk / small",
+      "eyes": "original",
+      "mouth": "small",
+      "polygon": [
+        [
+          50,
+          89
+        ],
+        [
+          52,
+          90
+        ],
+        [
+          56,
+          92
+        ],
+        [
+          61,
+          92
+        ],
+        [
+          65,
+          91
+        ],
+        [
+          69,
+          89
+        ],
+        [
+          71,
+          87
+        ],
+        [
+          72,
+          85
+        ],
+        [
+          70,
+          90
+        ],
+        [
+          67,
+          93
+        ],
+        [
+          63,
+          95
+        ],
+        [
+          59,
+          95
+        ],
+        [
+          55,
+          94
+        ],
+        [
+          52,
+          92
+        ]
+      ]
+    },
+    "talk_open": {
+      "label": "Talk / open",
+      "eyes": "original",
+      "mouth": "open",
+      "polygon": [
+        [
+          50,
+          89
+        ],
+        [
+          52,
+          90
+        ],
+        [
+          56,
+          92
+        ],
+        [
+          61,
+          92
+        ],
+        [
+          65,
+          91
+        ],
+        [
+          69,
+          89
+        ],
+        [
+          71,
+          87
+        ],
+        [
+          72,
+          85
+        ],
+        [
+          70,
+          92
+        ],
+        [
+          67,
+          95
+        ],
+        [
+          63,
+          97
+        ],
+        [
+          59,
+          97
+        ],
+        [
+          55,
+          95
+        ],
+        [
+          52,
+          92
+        ]
+      ],
+      "tongue": [
+        [
+          58,
+          96
+        ],
+        [
+          60,
+          95
+        ],
+        [
+          63,
+          95
+        ],
+        [
+          65,
+          96
+        ],
+        [
+          63,
+          97
+        ],
+        [
+          60,
+          97
+        ]
+      ]
+    },
+    "talk_round": {
+      "label": "Talk / round",
+      "eyes": "original",
+      "mouth": "round",
+      "bbox": [
+        57,
+        87,
+        66,
+        97
+      ]
+    },
+    "glitch": {
+      "label": "Stitched glitch",
+      "eyes": "right_cross",
+      "mouth": "jagged",
+      "line": [
+        [
+          50,
+          89
+        ],
+        [
+          53,
+          91
+        ],
+        [
+          55,
+          89
+        ],
+        [
+          58,
+          93
+        ],
+        [
+          60,
+          90
+        ],
+        [
+          63,
+          93
+        ],
+        [
+          65,
+          89
+        ],
+        [
+          68,
+          90
+        ],
+        [
+          70,
+          86
+        ],
+        [
+          72,
+          85
+        ]
+      ]
+    }
+  },
+  "timeline": [
+    {
+      "state": "neutral",
+      "ms": 1600
+    },
+    {
+      "state": "blink_half",
+      "ms": 90
+    },
+    {
+      "state": "blink_closed",
+      "ms": 120
+    },
+    {
+      "state": "blink_half",
+      "ms": 90
+    },
+    {
+      "state": "neutral",
+      "ms": 650
+    },
+    {
+      "state": "talk_small",
+      "ms": 120
+    },
+    {
+      "state": "talk_open",
+      "ms": 160
+    },
+    {
+      "state": "talk_small",
+      "ms": 90
+    },
+    {
+      "state": "talk_round",
+      "ms": 120
+    },
+    {
+      "state": "talk_small",
+      "ms": 100
+    },
+    {
+      "state": "talk_open",
+      "ms": 140
+    },
+    {
+      "state": "talk_small",
+      "ms": 90
+    },
+    {
+      "state": "neutral",
+      "ms": 700
+    },
+    {
+      "state": "glitch",
+      "ms": 160
+    },
+    {
+      "state": "neutral",
+      "ms": 100
+    },
+    {
+      "state": "glitch",
+      "ms": 200
+    },
+    {
+      "state": "neutral",
+      "ms": 1800
+    }
+  ],
+  "design_notes": [
+    "Talking is a silent expression loop, not microphone- or audio-driven lip sync.",
+    "Glitch is a stitched eye and jagged smile; no screen flash or global jitter.",
+    "Face seams remain in the underlying skin plate; nose and foreground hair are protected.",
+    "Native movements require inspection after rasterization; no character positions change."
+  ]
+}

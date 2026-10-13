@@ -1,0 +1,5 @@
+{
+  "output": "test_renders_a_transparent_64_pixel_head_within_16_entries (__main__.SpriteTests.test_renders_a_transparent_64_pixel_head_within_16_entries) ... C:\\Users\\Vivian\\AppData\\Local\\hermes\\artifacts\\sock-dash-face-study\\test_study.py:20: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.\r\n  self.assertEqual(set(im.getchannel(\"A\").getdata()), {0, 255})\r\nok\r\n\r\n----------------------------------------------------------------------\r\nRan 1 test in 0.242s\r\n\r\nOK",
+  "exit_code": 0,
+  "error": null
+}

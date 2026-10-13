@@ -1,0 +1,34 @@
+{
+  "status": "User-selected test draft; not a finished character asset",
+  "selected": {
+    "path": "C:\\Users\\Vivian\\AppData\\Local\\hermes\\artifacts\\sock-dash-face-study\\comparison-64-128\\sock_head_128.png",
+    "size": [
+      128,
+      128
+    ],
+    "palette_entries_including_transparency": 12,
+    "sha256": "71170b8088336bfc1974c123faa8472d6e2746c127413dd339113195d959cb00"
+  },
+  "retained_alternate": {
+    "path": "C:\\Users\\Vivian\\AppData\\Local\\hermes\\artifacts\\sock-dash-face-study\\output\\sock_head_64.png",
+    "size": [
+      64,
+      64
+    ],
+    "palette_entries_including_transparency": 12,
+    "sha256": "0227259bdf619a9b56963d9e4a30568c05da961509952e03a1358d2a91a98591"
+  },
+  "scope": "Face and hair only",
+  "palette_limit_including_transparency": 16,
+  "decision": "Use native 128x128 for the test draft. Preserve the adorable 64x64 idea as an alternate, not the main working resolution.",
+  "next_step": "No further expansion selected. Preserve the approved softer expression revision; voice and body remain future decisions.",
+  "expression_study": {
+    "directory": "expressions-128-soft-v2",
+    "status": "User-approved smaller, softer talking-mouth revision; retain current expressions and timing",
+    "native_loop": "expressions-128-soft-v2/sock_alive_128.gif",
+    "review_sheet": "expressions-128-soft-v2/expression-sheet.png",
+    "preserved_first_pass": "expressions-128"
+  },
+  "character_and_leaf_notes": "CHARACTER_AND_LEAF.md",
+  "historical_reports": "Earlier generation manifests and ZIPs are preserved snapshots; this file records the current selection."
+}

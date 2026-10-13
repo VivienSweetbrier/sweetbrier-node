@@ -1,0 +1,188 @@
+{
+  "palette": {
+    "transparent": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "ink": [
+      0,
+      0,
+      0,
+      255
+    ],
+    "hair_deep": [
+      13,
+      12,
+      18,
+      255
+    ],
+    "hair_shadow": [
+      31,
+      30,
+      41,
+      255
+    ],
+    "hair_light": [
+      37,
+      35,
+      47,
+      255
+    ],
+    "hair_glint": [
+      74,
+      72,
+      85,
+      255
+    ],
+    "ivory": [
+      244,
+      244,
+      232,
+      255
+    ],
+    "face_shadow": [
+      165,
+      157,
+      178,
+      255
+    ],
+    "seam": [
+      110,
+      105,
+      125,
+      255
+    ],
+    "nose_red": [
+      210,
+      30,
+      45,
+      255
+    ],
+    "nose_shadow": [
+      181,
+      35,
+      53,
+      255
+    ],
+    "nose_light": [
+      252,
+      140,
+      112,
+      255
+    ]
+  },
+  "provenance": {
+    "hair_deep": {
+      "source_box": [
+        385,
+        145,
+        635,
+        230
+      ],
+      "method": "channel medians within mean-RGB brightness band",
+      "brightness_band": [
+        8,
+        21
+      ],
+      "sample_count": 1121
+    },
+    "hair_shadow": {
+      "source_box": [
+        385,
+        145,
+        635,
+        230
+      ],
+      "method": "channel medians within mean-RGB brightness band",
+      "brightness_band": [
+        22,
+        37
+      ],
+      "sample_count": 3767
+    },
+    "hair_light": {
+      "source_box": [
+        385,
+        145,
+        635,
+        230
+      ],
+      "method": "channel medians within mean-RGB brightness band",
+      "brightness_band": [
+        38,
+        57
+      ],
+      "sample_count": 4589
+    },
+    "hair_glint": {
+      "source_box": [
+        385,
+        145,
+        635,
+        230
+      ],
+      "method": "channel medians within mean-RGB brightness band",
+      "brightness_band": [
+        58,
+        83
+      ],
+      "sample_count": 2012
+    },
+    "ivory": {
+      "source_box": [
+        534,
+        356,
+        537,
+        359
+      ],
+      "method": "3x3 channel median"
+    },
+    "face_shadow": {
+      "source_box": [
+        604,
+        359,
+        607,
+        362
+      ],
+      "method": "3x3 channel median"
+    },
+    "seam": {
+      "source_box": [
+        582,
+        373,
+        585,
+        376
+      ],
+      "method": "3x3 channel median"
+    },
+    "nose_red": {
+      "source_box": [
+        509,
+        348,
+        512,
+        351
+      ],
+      "method": "3x3 channel median"
+    },
+    "nose_shadow": {
+      "source_box": [
+        513,
+        356,
+        516,
+        359
+      ],
+      "method": "3x3 channel median"
+    },
+    "nose_light": {
+      "source_box": [
+        499,
+        344,
+        502,
+        347
+      ],
+      "method": "3x3 channel median"
+    }
+  }
+}

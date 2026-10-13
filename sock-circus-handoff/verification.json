@@ -1,0 +1,17 @@
+{
+  "size": [
+    64,
+    64
+  ],
+  "palette_entries_including_transparency": 12,
+  "alpha_bounds": [
+    3,
+    7,
+    63,
+    57
+  ],
+  "ascii_rows": 64,
+  "ascii_roundtrip_exact": true,
+  "test_exit_code": 0,
+  "test_output": "test_button_eyes_stay_separate_from_the_fringe (__main__.SpriteTests.test_button_eyes_stay_separate_from_the_fringe) ... ok\ntest_preview_is_exact_integer_nearest_neighbour (__main__.SpriteTests.test_preview_is_exact_integer_nearest_neighbour) ... ok\ntest_renders_a_transparent_64_pixel_head_within_16_entries (__main__.SpriteTests.test_renders_a_transparent_64_pixel_head_within_16_entries) ... ok\ntest_review_board_retains_source_and_landmark_provenance (__main__.SpriteTests.test_review_board_retains_source_and_landmark_provenance) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 1.768s\n\nOK\n"
+}

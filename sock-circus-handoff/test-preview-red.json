@@ -1,0 +1,5 @@
+{
+  "output": "test_preview_is_exact_integer_nearest_neighbour (__main__.SpriteTests.test_preview_is_exact_integer_nearest_neighbour) ... FAIL\r\ntest_renders_a_transparent_64_pixel_head_within_16_entries (__main__.SpriteTests.test_renders_a_transparent_64_pixel_head_within_16_entries) ... ok\r\n\r\n======================================================================\r\nFAIL: test_preview_is_exact_integer_nearest_neighbour (__main__.SpriteTests.test_preview_is_exact_integer_nearest_neighbour)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"C:\\Users\\Vivian\\AppData\\Local\\hermes\\artifacts\\sock-dash-face-study\\test_study.py\", line 27, in test_preview_is_exact_integer_nearest_neighbour\r\n    self.assertTrue(preview.exists(), \"Missing inspectable integer-scaled preview\")\r\nAssertionError: False is not true : Missing inspectable integer-scaled preview\r\n\r\n----------------------------------------------------------------------\r\nRan 2 tests in 0.517s\r\n\r\nFAILED (failures=1)",
+  "exit_code": 1,
+  "error": null
+}
