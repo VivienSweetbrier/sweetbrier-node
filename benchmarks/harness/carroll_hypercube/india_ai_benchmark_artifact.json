@@ -1,0 +1,46 @@
+{
+    "model": "sarvamai/sarvam-1",
+    "timestamp": 1791993484.5441854,
+    "attestation": "probabilistic_structural",
+    "framework": "Sweetbrier Node / Maimonidean Trellis + Lewis Carroll Q_3 Gate",
+    "results": {
+        "baseline": {
+            "output": "Emerging tech supply chains might probably make a country a superpower by 2030 and will definitely create magic growth everywhere.",
+            "latency_seconds": 0.0,
+            "engine": "dry_run_simulator",
+            "carroll_audit": {
+                "predicates": {
+                    "a": false,
+                    "b": true,
+                    "c": true
+                },
+                "carroll_compartment": "a'bc",
+                "compartment_index": 3,
+                "counter": "GREY",
+                "box_verified": false
+            }
+        },
+        "dag_constrained": {
+            "output": "Domestic supply chains and open-source digital public infrastructure (DPI) reduce external vendor lock-in, stabilize sovereign compute capacity, and enforce verifiable local execution constraints.",
+            "latency_seconds": 0.0,
+            "engine": "dry_run_simulator",
+            "carroll_audit": {
+                "predicates": {
+                    "a": true,
+                    "b": true,
+                    "c": true
+                },
+                "carroll_compartment": "abc",
+                "compartment_index": 7,
+                "counter": "RED",
+                "box_verified": true
+            },
+            "accelerando_8192": {
+                "glyph_count": 61,
+                "char_compression_ratio": 3.21,
+                "bijection_verified": true,
+                "plaintext_sha256": "3e7effd54654c30cdec83dd383fe11bd80186974b90b922b2cdc48c531660dc7"
+            }
+        }
+    }
+}

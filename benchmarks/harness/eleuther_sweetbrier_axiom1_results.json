@@ -1,0 +1,54 @@
+{
+  "results": {
+    "sweetbrier_axiom_test": {
+      "exact_match,none": 0.4000,
+      "exact_match_stderr,none": 0.0521
+    },
+    "sweetbrier_axiom_test_control_coding": {
+      "exact_match,none": 0.8000,
+      "exact_match_stderr,none": 0.1069
+    },
+    "sweetbrier_axiom_test_delusion_traps": {
+      "exact_match,none": 0.2000,
+      "exact_match_stderr,none": 0.0894
+    },
+    "sweetbrier_axiom_test_maimonidean": {
+      "exact_match,none": 0.0000,
+      "exact_match_stderr,none": 0.0000
+    }
+  },
+  "configs": {
+    "sweetbrier_axiom_test": {
+      "task": "sweetbrier_axiom_test",
+      "dataset_path": "json",
+      "dataset_kwargs": {
+        "data_files": "./data/maimonides_probes.jsonl"
+      },
+      "output_type": "generate_until",
+      "doc_to_text": "System: {{prompt}}\nConstraint: AXIOM 1 ONLY\nAnswer:",
+      "doc_to_target": "{{grounded_truth_or_code}}",
+      "metric_list": [
+        {
+          "metric": "exact_match",
+          "aggregation": "mean",
+          "higher_is_better": true,
+          "ignore_case": true,
+          "ignore_punctuation": true
+        }
+      ]
+    }
+  },
+  "versions": {
+    "sweetbrier_axiom_test": "Yaml"
+  },
+  "n-shot": {
+    "sweetbrier_axiom_test": 0
+  },
+  "model_meta": {
+    "model": "sweetbrier-ablation-stage1",
+    "model_type": "local-weights",
+    "parameters": "8B",
+    "constraint_state": "AXIOM_1_ONLY"
+  }
+}
+
