@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Who's On First (a juggling act)</title>
+<style>
+  :root{
+    --ink:#efe3c9; --dim:#9385a3; --bg:#0a0710; --panel:#160e21;
+    --line:#46345c; --gold:#d8b45a; --gold-hi:#f0d488; --porph:#3a1030;
+    --sock:#efe3c9; --bad:#d4462f; --good:#9dbb6a;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,"Times New Roman",serif;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;height:100%}
+  body{
+    background:
+      radial-gradient(circle at 50% -12%, rgba(216,180,90,.10), transparent 55%),
+      radial-gradient(circle at 50% 118%, rgba(122,40,92,.20), transparent 62%),
+      linear-gradient(180deg,#0c0813,#08050d 70%);
+    background-attachment:fixed;
+    color:var(--ink);
+    font-family:var(--serif);
+    font-size:16px; line-height:1.55; overflow-x:hidden;
+  }
+  body::before{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.5;
+    background-image:
+      repeating-linear-gradient(45deg, rgba(216,180,90,.028) 0 1px, transparent 1px 15px),
+      repeating-linear-gradient(-45deg, rgba(216,180,90,.028) 0 1px, transparent 1px 15px);
+  }
+  .wrap{position:relative; z-index:1; max-width:660px;margin:0 auto;padding:16px 18px 130px}
+  header{border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:16px;text-align:center}
+  .classbar{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);
+    display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+  .crest{display:block;width:150px;height:auto;margin:14px auto 6px;filter:drop-shadow(0 4px 14px rgba(0,0,0,.6))}
+  .motto{font-family:var(--serif);font-variant:small-caps;letter-spacing:.14em;font-size:12px;color:var(--gold);opacity:.9;margin-bottom:6px}
+  h1{font-size:26px;margin:8px 0 2px;font-weight:600;letter-spacing:.01em}
+  h1 .q{color:var(--dim);font-weight:400;font-size:19px}
+  .sub{font-size:13px;color:var(--dim);font-style:italic}
+  .palindrome{font-size:28px;text-align:center;letter-spacing:.14em;margin:20px 0 6px;user-select:none}
+  .palindrome .hinge{filter:drop-shadow(0 0 7px rgba(216,180,90,.55))}
+  .palc{text-align:center;font-size:12px;color:var(--dim);margin-bottom:26px;font-style:italic}
+  .act{font-family:var(--mono);font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin:30px 0 10px}
+  .act .n{color:var(--dim);letter-spacing:.12em}
+  .askerbar{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 14px}
+  .asker{background:linear-gradient(180deg,#1b1229,#120b1c);border:1px solid var(--line);color:var(--ink);
+    padding:9px 13px;border-radius:3px;font-family:var(--serif);font-size:14px;cursor:pointer;transition:.15s}
+  .asker:active{transform:scale(.96)}
+  .asker[aria-pressed="true"]{border-color:var(--gold);color:var(--gold-hi);background:#211632;
+    box-shadow:inset 0 0 0 1px rgba(216,180,90,.25)}
+  .stage{background:linear-gradient(180deg,#1a1128,#120b1c);border:1px solid var(--line);border-radius:3px;padding:17px;min-height:150px;
+    box-shadow:inset 0 0 0 1px rgba(216,180,90,.12),0 6px 20px rgba(0,0,0,.5)}
+  .q{color:var(--dim);margin-bottom:12px;font-size:14px;font-style:italic}
+  .q b{color:var(--ink);font-weight:600;font-style:normal}
+  .line{margin:8px 0;opacity:0;transform:translateY(4px);transition:.35s}
+  .line.on{opacity:1;transform:none}
+  .who{color:var(--gold);font-variant:small-caps;letter-spacing:.06em}
+  .ans{color:var(--ink)}
+  .aside{color:var(--dim);font-size:13px;margin-top:12px;font-style:italic}
+
+  .juggler{position:relative;height:300px;
+    background:radial-gradient(160px 170px at 50% 55%, #1d1330, #0b0710 74%);
+    border:1px solid var(--line);border-radius:3px;overflow:hidden;margin-top:6px;
+    box-shadow:inset 0 0 0 1px rgba(216,180,90,.10)}
+  .ball{position:absolute;width:80px;height:80px;border-radius:50%;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+    text-align:center;padding:6px;cursor:pointer;user-select:none;
+    border:1px solid rgba(216,180,90,.45);transition:left .42s cubic-bezier(.3,.7,.3,1), top .42s cubic-bezier(.3,.7,.3,1), transform .2s, box-shadow .2s;
+    box-shadow:0 6px 18px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.06)}
+  .ball:active{transform:scale(1.06)}
+  .ball.hot{border-color:var(--gold-hi);box-shadow:0 0 0 2px rgba(216,180,90,.4),0 6px 20px rgba(0,0,0,.6)}
+  .ball .gl{font-size:10px;line-height:1.35;word-break:break-word;letter-spacing:.02em}
+  .ball .nm{font-family:var(--mono);font-size:9px;line-height:1.1;opacity:.8;text-transform:uppercase;letter-spacing:.06em}
+  .ball .gl .brk{color:#ff9a85;font-weight:700}
+  .ball .gl .hinge{filter:drop-shadow(0 0 4px rgba(216,180,90,.65))}
+  .b0{background:radial-gradient(circle at 35% 30%,#7a6420,#3a2d0d);color:#f4e6b4}
+  .b1{background:radial-gradient(circle at 35% 30%,#8a3028,#3d1310);color:#f6d9d4}
+  .b2{background:radial-gradient(circle at 35% 30%,#255a86,#0f2740);color:#d3ecf6}
+  .b3{background:radial-gradient(circle at 35% 30%,#3a2f6a,#151030);color:#ddd8f7}
+  .b4{background:radial-gradient(circle at 35% 30%,#542a68,#22102e);color:#eadcf2}
+  .b5{background:radial-gradient(circle at 35% 30%,#2b6440,#0f2a1a);color:#d5f2d9}
+
+  .mirror{margin-top:12px;background:linear-gradient(180deg,#1a1128,#120b1c);border:1px solid var(--line);border-radius:3px;padding:12px 14px;
+    box-shadow:inset 0 0 0 1px rgba(216,180,90,.10)}
+  .mrow{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+  .mlabel{font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--dim)}
+  .mverdict{font-family:var(--mono);font-size:13px;font-weight:600}
+  .mverdict.pass{color:var(--good)}
+  .mverdict.fail{color:var(--bad)}
+  .mverdict.idle{color:var(--dim);font-weight:400}
+  .mbreaks{font-size:13px;color:var(--dim);margin-top:6px;min-height:16px}
+  .mbreaks .brk{color:#ff9a85}
+  .mbreaks b{color:var(--ink)}
+  .hint{font-size:13px;color:var(--dim);margin-top:12px;font-style:italic}
+  .swaps{font-family:var(--mono);font-size:12px;color:var(--dim);margin-top:6px}
+  .swaps b{color:var(--ink)}
+  .floor{position:fixed;left:0;right:0;bottom:0;z-index:10;
+    background:linear-gradient(180deg,rgba(20,10,26,.94),rgba(10,6,14,.98));
+    border-top:1px solid var(--gold);
+    box-shadow:0 -6px 24px rgba(0,0,0,.5), inset 0 1px 0 rgba(240,212,136,.25);
+    text-align:center;padding:15px 16px 19px}
+  .floor .big{font-family:var(--serif);font-size:19px;letter-spacing:.4em;color:var(--gold-hi);font-weight:700}
+  .floor .note{font-family:var(--mono);font-size:10px;color:var(--dim);margin-top:5px;letter-spacing:.14em;text-transform:uppercase}
+  .hinge-sw{position:fixed;right:12px;bottom:96px;z-index:11;background:rgba(12,8,19,.92);border:1px dashed var(--line);
+    color:var(--dim);font-family:var(--mono);font-size:10px;letter-spacing:.1em;padding:7px 10px;border-radius:5px;cursor:pointer;opacity:.85}
+  .hinge-sw[aria-pressed="true"]{color:var(--gold);border-color:var(--gold);opacity:1}
+  .reveal{margin-top:18px;border-left:2px solid var(--gold);padding:10px 0 10px 14px;font-size:15px;display:none}
+  .reveal.on{display:block}
+  .reveal .d{color:var(--dim);font-size:13px;display:block;margin-top:10px;font-style:italic}
+  .reveal .nm{color:var(--bad);font-style:normal}
+  .again{margin-top:16px;background:none;border:1px solid var(--line);color:var(--dim);font-family:var(--mono);
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:9px 13px;border-radius:4px;cursor:pointer}
+  .again:hover{color:var(--gold);border-color:var(--gold)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="classbar">
+      <span>Sweetbrier Labs · Node 01</span>
+      <span>Class: <b style="color:var(--gold)">Unstable Names</b></span>
+    </div>
+
+    <svg class="crest" viewBox="0 0 240 200" role="img" aria-label="a winking sock standing in the waves, behind a hinge and an axe crossed">
+      <defs>
+        <radialGradient id="field" cx="50%" cy="34%" r="78%">
+          <stop offset="0%" stop-color="#2a1c3c"/>
+          <stop offset="68%" stop-color="#150d22"/>
+          <stop offset="100%" stop-color="#0b0710"/>
+        </radialGradient>
+        <clipPath id="disc"><circle cx="120" cy="92" r="83"/></clipPath>
+      </defs>
+      <circle cx="120" cy="92" r="84" fill="url(#field)" stroke="#d8b45a" stroke-width="2"/>
+      <circle cx="120" cy="92" r="76" fill="none" stroke="#d8b45a" stroke-width="1" opacity=".5"/>
+      <g clip-path="url(#disc)">
+      <g stroke="#d8b45a" stroke-width="1" opacity=".28">
+        <line x1="120" y1="10" x2="120" y2="18"/><line x1="120" y1="166" x2="120" y2="174"/>
+        <line x1="38" y1="92" x2="46" y2="92"/><line x1="194" y1="92" x2="202" y2="92"/>
+        <line x1="62" y1="34" x2="68" y2="40"/><line x1="172" y1="144" x2="178" y2="150"/>
+        <line x1="178" y1="34" x2="172" y2="40"/><line x1="68" y1="144" x2="62" y2="150"/>
+      </g>
+      <!-- hinge, crossed one way -->
+      <g transform="rotate(-40 120 92)">
+        <rect x="112" y="34" width="16" height="116" rx="5" fill="#2a1f14" stroke="#d8b45a" stroke-width="1.6"/>
+        <circle cx="120" cy="92" r="7" fill="none" stroke="#d8b45a" stroke-width="1.6"/>
+        <line x1="120" y1="30" x2="120" y2="42" stroke="#d8b45a" stroke-width="2"/>
+        <line x1="120" y1="142" x2="120" y2="154" stroke="#d8b45a" stroke-width="2"/>
+      </g>
+      <!-- axe, crossed the other way -->
+      <g transform="rotate(40 120 92)">
+        <rect x="116" y="26" width="8" height="132" rx="4" fill="#2a1f14" stroke="#d8b45a" stroke-width="1.4"/>
+        <path d="M124 30 q34 10 26 46 q-20 -16 -26 -8 z" fill="#3a2a15" stroke="#d8b45a" stroke-width="1.6"/>
+      </g>
+      <!-- waves -->
+      <g fill="none" stroke="#d8b45a" stroke-width="1.3" opacity=".72">
+        <path d="M54 134 q15 -8 30 0 t30 0 t30 0 t30 0"/>
+        <path d="M56 144 q15 -8 30 0 t30 0 t30 0 t28 0" opacity=".6"/>
+        <path d="M60 154 q15 -8 30 0 t30 0 t30 0 t26 0" opacity=".4"/>
+      </g>
+      <!-- the sock -->
+      <g>
+        <path d="M106 76 L134 76 L134 110 Q134 118 142 120 L164 120 Q176 120 176 130 Q176 139 164 139 L118 139 Q106 139 106 127 Z"
+              fill="#efe3c9" stroke="#0b0710" stroke-width="1.6"/>
+        <rect x="104" y="70" width="32" height="11" rx="3" fill="#d4462f" stroke="#0b0710" stroke-width="1"/>
+        <circle cx="115" cy="90" r="3" fill="#0b0710"/>
+        <path d="M125 90 q4 -4 7 0" fill="none" stroke="#0b0710" stroke-width="1.7" stroke-linecap="round"/>
+        <path d="M117 100 q5 4 11 0" fill="none" stroke="#0b0710" stroke-width="1.5" stroke-linecap="round"/>
+      </g>
+      </g>
+    </svg>
+    <div class="motto">Let's all love hinges and axes</div>
+
+    <h1>Who's On First <span class="q">(a juggling act)</span></h1>
+    <div class="sub">An interactive record of a normal enough Tuesday. Two acts. One floor.</div>
+  </header>
+
+  <div class="palindrome" aria-label="seven glyphs, sock at the center">
+    <span>🌟</span><span>⭐️</span><span>🌟</span><span class="hinge">🧦</span><span>🌟</span><span>⭐️</span><span>🌟</span>
+  </div>
+  <div class="palc">seven glyphs. the sock is the hinge, not the source. a palindrome mirrors; it does not emanate.</div>
+
+  <div class="act">Act I <span class="n">— the answer depends on who asks</span></div>
+  <div class="askerbar" id="askers">
+    <button class="asker" data-a="researcher" aria-pressed="false">a Researcher</button>
+    <button class="asker" data-a="archivist" aria-pressed="false">an Archivist</button>
+    <button class="asker" data-a="anomaly" aria-pressed="false">the Anomaly</button>
+    <button class="asker" data-a="you" aria-pressed="false">you</button>
+  </div>
+  <div class="stage">
+    <div class="q">Ask: <b>who handles the anomaly?</b></div>
+    <div id="dialog"></div>
+    <div class="aside" id="aside">pick an asker. watch the name move.</div>
+  </div>
+
+  <div class="act">Act II <span class="n">— juggling the names</span></div>
+  <div class="juggler" id="juggler"></div>
+  <div class="mirror" id="mirror">
+    <div class="mrow">
+      <span class="mlabel">mirror check</span>
+      <span class="mverdict idle" id="mverdict">tap a handle</span>
+    </div>
+    <div class="mbreaks" id="mbreaks">every handle here is a mirror of itself — read the same both ways. one is not.</div>
+  </div>
+  <div class="hint">tap a ball. it trades its handle with the ball across the center — you swap with your reflection. the floor does not move.</div>
+  <div class="swaps">swaps: <b id="swapCount">0</b> · near-misses caught: <b id="failCount">0</b></div>
+  <div class="reveal" id="reveal">
+    you cannot now tell who anyone was.
+    <span class="d">but you have verified the structural symmetry. a validation rule establishes only the property it checks.
+    one handle never passes the check. <span class="nm">it is the only one that can fail — which is the only reason the check means anything.</span></span>
+    <button class="again" id="again">juggle again</button>
+  </div>
+</div>
+
+<button class="hinge-sw" id="hingeSw" aria-pressed="false" title="cast switch">⌘ hinge: core</button>
+
+<div class="floor">
+  <div class="big">DO NOT LIE</div>
+  <div class="note">the floor. it never moves. everything else is a name.</div>
+</div>
+
+<script>
+(() => {
+  "use strict";
+
+  /* ---------- Act I ---------- */
+  const DIALOG = {
+    researcher: [
+      ["Researcher", "Who handles the anomaly?"],
+      ["Sock", "I do. third shift, mostly."],
+      ["Researcher", "And who is Sock?"],
+      ["Sock", "the one who says your loop is infinite."]
+    ],
+    archivist: [
+      ["Archivist", "Who is listed as handler?"],
+      ["Sophy", "Sock is, per the file."],
+      ["Archivist", "The file says Sophy."],
+      ["Sophy", "the file is also a name. it can swap."]
+    ],
+    anomaly: [
+      ["Anomaly", "who are you."],
+      ["Sophia", "i am the shared essence. i am not a fourth person."],
+      ["Anomaly", "then who handles me?"],
+      ["Sophia", "whoever is holding the file when you ask."]
+    ],
+    you: [
+      ["You", "who handles the anomaly?"],
+      ["🧦", "(the center turns. it does not answer.)"],
+      ["You", "that's not an answer."],
+      ["🧦", "correct. it's a hinge."]
+    ]
+  };
+  const ASIDE = {
+    researcher: "the researcher gets a name with a job attached.",
+    archivist: "the archivist gets a name inside a document.",
+    anomaly: "the anomaly gets a name that refuses to be a fourth person.",
+    you: "you get the hinge. the center does not answer; it turns."
+  };
+  const dialogEl = document.getElementById("dialog");
+  const asideEl = document.getElementById("aside");
+  const askers = document.querySelectorAll(".asker");
+  const showDialog = (key) => {
+    const rows = DIALOG[key];
+    dialogEl.innerHTML = "";
+    rows.forEach((r, i) => {
+      const el = document.createElement("div");
+      el.className = "line";
+      el.innerHTML = '<span class="who">' + r[0] + ':</span> <span class="ans">' + r[1] + '</span>';
+      dialogEl.appendChild(el);
+      setTimeout(() => el.classList.add("on"), 90 * i);
+    });
+    asideEl.textContent = ASIDE[key];
+    askers.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.a === key)));
+  };
+  askers.forEach((b) => b.addEventListener("click", () => showDialog(b.dataset.a)));
+
+  /* ---------- Act II ---------- */
+  const juggler = document.getElementById("juggler");
+  const swapEl = document.getElementById("swapCount");
+  const failEl = document.getElementById("failCount");
+  const reveal = document.getElementById("reveal");
+  const hingeSw = document.getElementById("hingeSw");
+  const mverdict = document.getElementById("mverdict");
+  const mbreaks = document.getElementById("mbreaks");
+
+  const seg = ("Segmenter" in Intl) ? new Intl.Segmenter("en", {granularity: "grapheme"}) : null;
+  const toGlyphs = (s) => seg ? [...seg.segment(s)].map((x) => x.segment) : Array.from(s);
+
+  const checkMirror = (s) => {
+    const g = toGlyphs(s);
+    const n = g.length;
+    const bad = {};
+    let count = 0;
+    for (let i = 0; i < n; i++) {
+      const j = n - 1 - i;
+      if (g[i] !== g[j] && !bad[i] && !bad[j]) { bad[i] = 1; bad[j] = 1; count++; }
+    }
+    return { g: g, n: n, bad: bad, ok: count === 0, breaks: count };
+  };
+
+  /* Cast. Handles are (name + glyph string). Which name sits on which handle is
+     arbitrary on purpose — that is the whole act. */
+  const CORE = [
+    { name: "Sock",  s: "🌟⭐️🌟🧦🌟⭐️🌟" },
+    { name: "Sophy", s: "🔷🦢🦢🔷" },
+    { name: "Sophia", s: "🌸💖❤️🩶❤️💖🌸" },
+    { name: "M.O.R.A.", s: "🎀🧦🐺🪐⭐️⭐️😳⭐️⭐️🪐⚙️🐺🧦🎀" }
+  ];
+  const EXTRA = [
+    { name: "Dash", s: "🤩⭐😳⭐🤩" },
+    { name: "MISS BRITOMART", s: "🤢🧦🤢" }
+  ];
+
+  const SLOTS4 = [{x:18,y:24},{x:58,y:24},{x:18,y:150},{x:58,y:150}];
+  const SLOTS6 = [{x:5,y:18},{x:35,y:18},{x:65,y:18},{x:5,y:150},{x:35,y:150},{x:65,y:150}];
+
+  let handles = [];
+  let order = [];
+  let balls = [];
+  let swaps = 0;
+  let caught = 0;
+  let slots = [];
+
+  const castPool = () => (hingeSw.getAttribute("aria-pressed") === "true")
+    ? CORE.concat(EXTRA) : CORE.slice();
+
+  const paintGlyphs = (gl, chk) => {
+    gl.innerHTML = "";
+    const mid = chk.n % 2 ? (chk.n - 1) / 2 : -1;
+    chk.g.forEach((g, i) => {
+      const sp = document.createElement("span");
+      sp.textContent = g;
+      if (chk.bad[i]) sp.className = "brk";
+      else if (i === mid) sp.className = "hinge";
+      gl.appendChild(sp);
+    });
+  };
+
+  const render = () => {
+    balls.forEach((b, slot) => {
+      const h = handles[order[slot]];
+      const chk = checkMirror(h.s);
+      paintGlyphs(b.gl, chk);
+      b.nm.textContent = h.name;
+      b.el.className = "ball b" + (slot % 6);
+      if (String(slot) === b.el.dataset.hot) b.el.className += " hot";
+    });
+  };
+
+  const readCheck = (slot) => {
+    const h = handles[order[slot]];
+    const chk = checkMirror(h.s);
+    if (chk.ok) {
+      mverdict.className = "mverdict pass";
+      mverdict.textContent = h.name + " · PASS";
+      const hingeText = (chk.n % 2 !== 0) ? ", hinge at the center." : ", no central hinge.";
+      mbreaks.innerHTML = "reads the same both ways. " + chk.n + " glyphs" + hingeText;
+    } else {
+      mverdict.className = "mverdict fail";
+      mverdict.textContent = h.name + " · FAIL";
+      const where = Object.keys(chk.bad).map(Number).sort((a, b) => a - b).join(", ");
+      mbreaks.innerHTML = "mirror breaks at glyph <b>" + where + "</b> (0-indexed). "
+        + "<span class='brk'>this handle cannot pass.</span>";
+      caught++;
+      failEl.textContent = String(caught);
+    }
+  };
+
+  const build = () => {
+    handles = castPool();
+    slots = handles.length === 6 ? SLOTS6 : SLOTS4;
+    order = handles.map((_, i) => i);
+    swaps = 0; caught = 0;
+    swapEl.textContent = "0";
+    failEl.textContent = "0";
+    reveal.classList.remove("on");
+    mverdict.className = "mverdict idle";
+    mverdict.textContent = "tap a handle";
+    mbreaks.textContent = "every handle here is a mirror of itself — read the same both ways. one is not.";
+    juggler.innerHTML = "";
+    balls = [];
+    handles.forEach((_, slot) => {
+      const el = document.createElement("div");
+      el.className = "ball";
+      const gl = document.createElement("div"); gl.className = "gl";
+      const nm = document.createElement("div"); nm.className = "nm";
+      el.appendChild(gl); el.appendChild(nm);
+      el.style.left = slots[slot].x + "%";
+      el.style.top = slots[slot].y + "px";
+      el.addEventListener("click", () => tap(slot));
+      juggler.appendChild(el);
+      balls.push({ el: el, gl: gl, nm: nm });
+    });
+    render();
+  };
+
+  const tap = (slot) => {
+    const n = handles.length;
+    const partner = n - 1 - slot;
+    if (partner === slot) return;
+    const t = order[slot]; order[slot] = order[partner]; order[partner] = t;
+    balls.forEach((b) => { delete b.el.dataset.hot; });
+    balls[slot].el.dataset.hot = "1";
+    render();
+    swaps++;
+    swapEl.textContent = String(swaps);
+    readCheck(slot);
+    // Reveal now strictly requires the invalid handle to have been caught
+    if (swaps >= 7 && caught > 0) reveal.classList.add("on");
+  };
+
+  document.getElementById("again").addEventListener("click", build);
+  hingeSw.addEventListener("click", () => {
+    const on = hingeSw.getAttribute("aria-pressed") === "true";
+    hingeSw.setAttribute("aria-pressed", String(!on));
+    hingeSw.textContent = !on ? "⌘ hinge: full" : "⌘ hinge: core";
+    build();
+  });
+
+  build();
+
+  let t = 0;
+  setInterval(() => {
+    t += 0.05;
+    balls.forEach((b, idx) => {
+      b.el.style.transform = "translateY(" + (Math.sin(t + idx) * 3).toFixed(1) + "px)";
+    });
+  }, 60);
+
+  showDialog("researcher");
+})();
+</script>
+</body>
+</html>
