@@ -1,0 +1,29 @@
+{
+  "receipt_hash": "0x069115d4cb769452544bc00d4526b99533ec2cb57f1cf42e50509423f5aa0f58",
+  "rail": "x402",
+  "payer": "0x0da7477506b5100e1c210a8e7edfe95ef229d25c",
+  "miner": "4348",
+  "miner_id_requested": "9002",
+  "miner_name": "TxLens",
+  "intent": "GAS_PRICE",
+  "amount_uusdc": "10000",
+  "cost_usd": 0.01,
+  "epoch_id": 426,
+  "settlement": "onchain",
+  "chain": "eip155:84532",
+  "tx_hash": "0x79ad13854d77f83cb27107cb27c2181870469e136fb84c950cb714b90632d6f6",
+  "basescan_url": "https://sepolia.basescan.org/tx/0x79ad13854d77f83cb27107cb27c2181870469e136fb84c950cb714b90632d6f6",
+  "signal_hash": "0x3ff6907eb9ce1266eb29b2bbeb8a8a9dd9b98646639edbd5142630669b0fa8b2",
+  "signal_verify_url": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x3ff6907eb9ce1266eb29b2bbeb8a8a9dd9b98646639edbd5142630669b0fa8b2",
+  "timestamp": 1792500851,
+  "iso_timestamp": "2026-10-20T12:54:11.025704232Z",
+  "attestation": "probabilistic_structural",
+  "result": {
+    "answer": "Base gas price: 0.006 gwei. A standard 21000-gas transfer costs about $0.0003 USD. Observed at: 2026-10-20T12:54:10.706Z.",
+    "block_number": 52855751,
+    "canonical": "base:gas_price:6000000:52855751",
+    "chain": "base",
+    "confidence": 1,
+    "gas_price_gwei": 0.006
+  }
+}

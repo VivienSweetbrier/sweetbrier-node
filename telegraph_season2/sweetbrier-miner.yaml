@@ -1,0 +1,224 @@
+version: "1"
+kind: miner
+id: 97777
+slug: sweetbrier-superminer
+protocol: generic
+name: Sweetbrier Causal SuperMiner
+description: Sovereign neuro-symbolic and deterministic multi-intent intelligence provider powered by Sweetbrier Bayesian SMC and causal d-separation.
+base_url: https://silence-popularity-growing-bucks.trycloudflare.com
+endpoints:
+  - path: /llm-output-evaluation
+    method: GET
+    description: Evaluates model outputs against prompts and reference answers for factual alignment, lexical diversity, and anti-hallucination safety.
+    intents:
+      - LLM_OUTPUT_EVALUATION
+    params:
+      query:
+        required:
+          - name: prompt
+            type: string
+            intents: ["*"]
+            description: "Original task or prompt given to the model."
+          - name: output
+            type: string
+            intents: ["*"]
+            description: "Model output or candidate answer to evaluate."
+  - path: /task-execution-quality
+    method: GET
+    description: Scores autonomous agent task execution completeness and instruction alignment.
+    intents:
+      - TASK_EXECUTION_QUALITY
+    params:
+      query:
+        required:
+          - name: task
+            type: string
+            intents: ["*"]
+            description: "Task specification or instruction."
+          - name: result
+            type: string
+            intents: ["*"]
+            description: "Execution result or agent output."
+  - path: /fact-check
+    method: GET
+    description: Verifies checkable factual claims for numerical anchors, provenance markers, and structural consistency.
+    intents:
+      - FACT_CHECK
+    params:
+      query:
+        required:
+          - name: claim
+            type: string
+            intents: ["*"]
+            description: "Checkable factual claim or statement."
+  - path: /ai-text-detect
+    method: GET
+    description: Stylometric burstiness and type-token ratio analyzer detecting AI-generated vs human-written text.
+    intents:
+      - AI_TEXT_DETECTION
+    params:
+      query:
+        required:
+          - name: text
+            type: string
+            intents: ["*"]
+            description: "Text passage to analyze for AI vs human authorship."
+  - path: /semantic-similarity
+    method: GET
+    description: Computes cosine and Jaccard semantic similarity between two text passages.
+    intents:
+      - SEMANTIC_SIMILARITY
+    params:
+      query:
+        required:
+          - name: text_a
+            type: string
+            intents: ["*"]
+            description: "First text passage."
+          - name: text_b
+            type: string
+            intents: ["*"]
+            description: "Second text passage."
+  - path: /mining-hashprice
+    method: GET
+    description: Calculates Bitcoin hashprice per PH/day, fleet power cost, and optimal megawatt allocation between BTC mining and AI compute leasing.
+    intents:
+      - MINING_HASHPRICE_VERIFY
+    params:
+      query:
+        required:
+          - name: btc_price_usd
+            type: number
+            intents: ["*"]
+            description: "Current BTC spot price in USD."
+  - path: /grid-power-price
+    method: GET
+    description: Returns nodal locational marginal electricity prices (LMP) and curtailment dispatch signals across North American grid operators.
+    intents:
+      - GRID_POWER_PRICE
+    params:
+      query:
+        required:
+          - name: region
+            type: string
+            intents: ["*"]
+            description: "Grid ISO or nodal region (e.g. ERCOT_NORTH, PJM, MISO, AESO, MANITOBA_HYDRO)."
+  - path: /smart-contract-audit
+    method: GET
+    description: Audits Solidity source code or EVM bytecode for reentrancy, tx.origin phishing, and unprotected delegatecall vulnerabilities.
+    intents:
+      - SMART_CONTRACT_AUDIT
+    params:
+      query:
+        required:
+          - name: code_or_bytecode
+            type: string
+            intents: ["*"]
+            description: "Solidity source snippet or EVM bytecode hex to audit."
+  - path: /contract-obligation-audit
+    method: GET
+    description: Extracts mandatory deontic modals, conditional triggers, and temporal bounds from legal and union contract clauses.
+    intents:
+      - CONTRACT_OBLIGATION_AUDIT
+    params:
+      query:
+        required:
+          - name: clause_text
+            type: string
+            intents: ["*"]
+            description: "Legal or contract clause text to audit."
+  - path: /fraud-query
+    method: GET
+    description: Screens EVM wallet and contract addresses for address-poisoning entropy and fraud risk.
+    intents:
+      - FRAUD_DETECTION
+    params:
+      query:
+        required:
+          - name: address
+            type: string
+            intents: ["*"]
+            description: "0x-prefixed EVM address to screen."
+  - path: /route-eta
+    method: GET
+    description: Computes non-memoryless M/G/c Weibull Bayesian queue route ETA, shockwave probability, and traffic intensity 95% HDI.
+    intents:
+      - ROUTE_ETA
+    params:
+      query:
+        required:
+          - name: origin
+            type: string
+            intents: ["*"]
+            description: "Origin node, corridor, or transit hub."
+          - name: destination
+            type: string
+            intents: ["*"]
+            description: "Destination node, corridor, or transit hub."
+  - path: /carrier-serviceability
+    method: GET
+    description: Verifies carrier and terminal capacity stability against heavy-tailed Weibull traffic spikes using Bayesian M/G/c saturation bounds.
+    intents:
+      - CARRIER_SERVICEABILITY
+    params:
+      query:
+        required:
+          - name: carrier_id
+            type: string
+            intents: ["*"]
+            description: "Carrier, port terminal, or transit operator identifier."
+  - path: /delivery-window-verify
+    method: GET
+    description: Audits promised delivery windows against non-memoryless heavy-tailed M/G/c queue sojourn distributions.
+    intents:
+      - DELIVERY_WINDOW_VERIFY
+    params:
+      query:
+        required:
+          - name: promised_window_minutes
+            type: number
+            intents: ["*"]
+            description: "Promised SLA delivery window in minutes."
+  - path: /datacenter-telemetry
+    method: GET
+    description: Audits AI compute cluster PUE and non-memoryless M/G/c GPU worker queue saturation probability.
+    intents:
+      - DATACENTER_TELEMETRY_VERIFY
+    params:
+      query:
+        required:
+          - name: cluster_id
+            type: string
+            intents: ["*"]
+            description: "Datacenter or AI inference cluster identifier."
+  - path: /wash-trading-detect
+    method: GET
+    description: Detects coordinated Block-0 MEV sniper bot bundles, Sybil wallet clusters, and wash-trading orderflow via M/G/c Weibull burstiness verification.
+    intents:
+      - WASH_TRADING_DETECTION
+    params:
+      query:
+        required:
+          - name: token_or_pool
+            type: string
+            intents: ["*"]
+            description: "Token or DEX liquidity pool address to analyze."
+semantics:
+  signal_mapping:
+    label_field: model
+  supported_intents:
+    - LLM_OUTPUT_EVALUATION
+    - TASK_EXECUTION_QUALITY
+    - FACT_CHECK
+    - AI_TEXT_DETECTION
+    - SEMANTIC_SIMILARITY
+    - MINING_HASHPRICE_VERIFY
+    - GRID_POWER_PRICE
+    - SMART_CONTRACT_AUDIT
+    - CONTRACT_OBLIGATION_AUDIT
+    - FRAUD_DETECTION
+    - ROUTE_ETA
+    - CARRIER_SERVICEABILITY
+    - DELIVERY_WINDOW_VERIFY
+    - DATACENTER_TELEMETRY_VERIFY
+    - WASH_TRADING_DETECTION
