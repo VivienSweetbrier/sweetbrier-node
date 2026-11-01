@@ -44,6 +44,7 @@ trust the poster, because the book checks the posting.
 """
 
 import hashlib
+import hmac
 import json
 from dataclasses import dataclass, field, replace
 
@@ -107,13 +108,20 @@ class Entry:
         """Axis 11: the record both sides hold in common."""
         return hashlib.sha256(self.canonical().encode()).hexdigest()
 
-    def sign(self, party):
-        """A party countersigns by hashing the shared receipt with its name.
-        Toy signatures for a proof of concept; the point is the shape: the
-        signature is over the COMMON record, so a privately altered copy on
-        either side stops verifying."""
-        self.signatures[party] = hashlib.sha256(
-            (self.receipt() + "|" + party).encode()).hexdigest()
+    def sign(self, party, key):
+        """A party countersigns the COMMON record with a secret only she
+        holds: an HMAC of the shared receipt, keyed by her own key.
+        Knowing the receipt and the party's name is not enough to forge
+        her countersign; you would need her key. In this proof of
+        concept the Book carries the key registry so the checker can
+        verify; a deployment gives each party sole custody of her key
+        (or public-key signatures), and only the verification step
+        changes. The shape is the point: the signature is over the
+        record held in common, so a privately altered copy on either
+        side stops verifying."""
+        self.signatures[party] = hmac.new(
+            key.encode(), self.receipt().encode(),
+            hashlib.sha256).hexdigest()
         return self
 
 
@@ -124,8 +132,12 @@ class Rejected(Exception):
 
 
 class Book:
-    def __init__(self):
+    def __init__(self, keys=None):
         self.entries = {}
+        # party -> her secret key, for verifying countersignatures on
+        # axis 11. Proof-of-concept custody: the registry stands in for
+        # each party holding her own key; see Entry.sign.
+        self.keys = dict(keys or {})
 
     # -- the checker: every axis, every time ------------------------------
     def check(self, e):
@@ -137,6 +149,12 @@ class Book:
         if e.amount <= 0:
             raise Rejected("amount must be positive; forgiveness is an "
                            "axis, not a zero")
+        # 7. reason: why the entry exists is CHECKED, not merely filed.
+        # An unstated reason is an entry asking to be trusted about the
+        # one thing only its author can testify to.
+        if not e.reason or not str(e.reason).strip():
+            raise Rejected("reason (axis 7) is empty; an entry must "
+                           "state why it exists at posting time")
         # 3. forgiveness: the grace standing must be one of the three, and
         # a forgiveness entry must actually release a standing obligation:
         # resting on it, reversed against it, for exactly its amount.
@@ -191,14 +209,20 @@ class Book:
                                f"projected a next movement of "
                                f"{parent.momentum}, this entry posts "
                                f"{e.amount}")
-        # 11. receipt: both parties hold the SAME record, countersigned.
+        # 11. receipt: both parties hold the SAME record, countersigned
+        # with keys only the countersigning parties hold.
         for party in needed:
-            want = hashlib.sha256(
-                (e.receipt() + "|" + party).encode()).hexdigest()
-            if e.signatures.get(party) != want:
-                raise Rejected(f"receipt does not verify for {party}; one "
-                               "side's copy has drifted from the record "
-                               "held in common")
+            key = self.keys.get(party)
+            if key is None:
+                raise Rejected(f"no key on file for {party}; her "
+                               "countersign cannot be verified")
+            want = hmac.new(key.encode(), e.receipt().encode(),
+                            hashlib.sha256).hexdigest()
+            if not hmac.compare_digest(e.signatures.get(party, ""), want):
+                raise Rejected(f"receipt does not verify for {party}; "
+                               "one side's copy has drifted from the "
+                               "record held in common, or the countersign "
+                               "was not made with her key")
         return True
 
     def post(self, e):
@@ -243,5 +267,7 @@ class Book:
             momentum=None,
             forgiveness="forgiven",
         )
-        e.sign(ACCOUNTS[o.debit_account]).sign(ACCOUNTS[o.credit_account])
+        dh = ACCOUNTS[o.debit_account]
+        ch = ACCOUNTS[o.credit_account]
+        e.sign(dh, self.keys[dh]).sign(ch, self.keys[ch])
         return self.post(e)
