@@ -94,3 +94,13 @@ To post a lie, a poster must satisfy all of these at once, against
 counterparties holding the same receipt. The demo's closing line is the
 thesis: at that point the distinction between forging the book and
 keeping it honestly has quietly disappeared.
+
+## License
+
+Copyright (C) 2026 Christopher Vivian Duguay.
+
+This proof of concept is free software, licensed under the GNU Affero
+General Public License v3.0 (AGPL-3.0). See the LICENSE file in this
+directory for the full text. Network use is distribution: if you run a
+modified version of this checker as a service, the AGPL asks you to
+share your changes the same way.

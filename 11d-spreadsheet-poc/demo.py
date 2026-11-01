@@ -15,6 +15,16 @@ against a terminating chain is indistinguishable from the truth.
 
 from ledger import Book, Entry, Rejected
 
+# Demo keys: in a deployment each party holds her own and nobody else
+# ever sees it. They are printed here because a demo's secrets are
+# stage props; the checker's refusals do not depend on hiding them
+# from the reader, only on the FORGER not holding the right one.
+DEMO_KEYS = {
+    "Harvest": "harvest-demo-key",
+    "NorWest": "norwest-demo-key",
+    "Siloam": "siloam-demo-key",
+}
+
 
 def attempt(book, entry, note):
     try:
@@ -27,11 +37,11 @@ def attempt(book, entry, note):
 
 def signed(e, *parties):
     for p in parties:
-        e.sign(p)
+        e.sign(p, DEMO_KEYS[p])
     return e
 
 
-book = Book()
+book = Book(keys=DEMO_KEYS)
 
 print("Honest entries:")
 e1 = signed(Entry(
@@ -131,6 +141,28 @@ b6 = signed(Entry(
     momentum=None, forgiveness="forgiven"), "NorWest", "Harvest")
 attempt(book, b6, "claims to forgive E1, which never stood as owed: "
                   "grace as a costume for rewriting a settled entry")
+
+b7 = signed(Entry(
+    entry_id="B7", debit_account="Harvest", credit_account="NorWest",
+    amount=5, posted_at="2026-10-30T14:30", provenance="E1",
+    author="Harvest coordinator", reason="",
+    consent=("Harvest", "NorWest"), definition_version="v1",
+    momentum=None), "Harvest", "NorWest")
+attempt(book, b7, "no reason stated; axis 7 is checked, not just filed")
+
+b8 = signed(Entry(
+    entry_id="B8", debit_account="Harvest", credit_account="Siloam",
+    amount=5, posted_at="2026-10-30T14:35", provenance="E2",
+    author="Harvest coordinator", reason="a share Siloam never signed",
+    consent=("Harvest", "Siloam"), definition_version="v1",
+    momentum=None), "Harvest")
+# the forgery, exactly as an outside reviewer first performed it:
+# countersign AS Siloam using only the public receipt and her name.
+import hashlib as _h
+b8.signatures["Siloam"] = _h.sha256(
+    (b8.receipt() + "|Siloam").encode()).hexdigest()
+attempt(book, b8, "Siloam's countersign forged from the receipt and "
+                  "her name alone, without her key")
 
 print(f"\nThe book holds {len(book.entries)} entries. "
       "Every refusal above names its axis.")
