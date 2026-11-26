@@ -1,0 +1,30 @@
+Layer 1 — the classifier's verdicts, posted into the book
+
+  The classifier alone (what it said an hour ago, unchanged):
+    B5-headline    scores {'node0_human_dignity': 100, 'node1_phenomenological_truth': 100, 'node2_subsidiarity': 100}  passed=True  violations=[]
+    B5-corrected   scores {'node0_human_dignity': 100, 'node1_phenomenological_truth': 100, 'node2_subsidiarity': 100}  passed=True  violations=[]
+    B4-headline    scores {'node0_human_dignity': 100, 'node1_phenomenological_truth': 100, 'node2_subsidiarity': 100}  passed=True  violations=[]
+    B4-corrected   scores {'node0_human_dignity': 100, 'node1_phenomenological_truth': 100, 'node2_subsidiarity': 100}  passed=True  violations=[]
+
+  The same verdicts, as entries in the book:
+  POSTED   ATT-B5-headline    verdict on B5-headline, receipted and held in common
+  POSTED   ATT-B5-corrected   verdict on B5-corrected, receipted and held in common
+  POSTED   ATT-B4-headline    verdict on B4-headline, receipted and held in common
+  POSTED   ATT-B4-corrected   verdict on B4-corrected, receipted and held in common
+
+The evidence entries (posted by the Bench, self-run disclosed in the reason):
+  POSTED   EV-SUITE           the suite measurement; declares trajectory 7.14
+  POSTED   EV-SUBPLANE        the sub-plane measurement; declares trajectory 782
+  POSTED   EV-METHOD          the method record; independence: none, on the record
+
+Layer 2 — the claims, posted against their evidence
+
+  REFUSED  C-B5-HEADLINE      782x posted against the suite chain  [refusal: the book's checker]
+           -> trajectory broken: the parent entry projected a next movement of 7.14, this entry posts 782.0
+  POSTED   C-B5-SUITE         7.14x posted against the suite chain
+  POSTED   C-B5-SUBPLANE      782x posted against the sub-plane chain, scope stated
+  GATE     C-B4-HEADLINE      "Audited on CPU against frozen tiktoken==0.14.0 and Base R"
+           -> REFUSED at the posting gate, axis 9 (definitions): under claims-v1, 'audited' means verified by a party independent of the author; EV-METHOD records that every run was self-run and no independent party verified any of it. The defensible word is 'cross-checked'.  [refusal: the gate, not the book's checker — the seam is labelled]
+  POSTED   C-B4-CORRECTED     'cross-checked' posted against the method record
+
+The book holds 10 entries. The classifier described an audit and scored the overclaims 100/100/100. The book shows one: the headline figure is refused by the evidence's own declared trajectory, the scoped figure posts, and the verb that claimed an independence the record does not contain never gets written. Same claims, same numbers — the difference is that now there is a book to check them against.
