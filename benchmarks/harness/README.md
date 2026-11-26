@@ -19,6 +19,10 @@ The Universal Verification Engine (UVE) is a structural, neurosymbolic verificat
 
 The category strings are stable identifiers. The recorded result files in this directory (`eleuther_*_results.json`) are keyed by them and are kept as originally recorded, so published numbers stay checkable against the archive.
 
+## Fresh replication run — 25 November 2026
+
+The harness's 30-problem evaluation was re-run independently on a clean checkout (model: `qwen2.5-coder:1.5b` via Ollama, temperature 0, seed 42, analysed with this repo's own `analyze_results.py`). Headline: Tier A code pass **10.0% unconstrained → 60.0% full**; Tier B violation rate **10.0% → 0.0%**; Tier B code pass 0% in both conditions (the small stand-in model failed those items outright either way). Raw outputs and full caveats — one run, one seed, n = 10 per tier, a 1.5B stand-in rather than the recorded-era 8B — are in [`results/2026-11-25-fresh-run.md`](results/2026-11-25-fresh-run.md).
+
 We hope you find this verification machinery useful for your community infrastructure projects.
 
 Warmly,
