@@ -1,0 +1,46 @@
+{
+  "battery": "zero-ghost-state",
+  "target": "benchmarks/harness/constraint_checker.py",
+  "probes": 16,
+  "canaries": 4,
+  "tests": {
+    "T1_replay_determinism": {
+      "pass": true,
+      "detail": "30 in-process replays x 16 probes identical"
+    },
+    "T2_interleaving_invariance": {
+      "pass": true,
+      "detail": "6 orderings incl. canary-interleaved and poison-first/last: all verdicts invariant"
+    },
+    "T3_canary_contamination": {
+      "pass": true,
+      "detail": "4 canary markers absent from all subsequent attestations"
+    },
+    "T4_position_sweep": {
+      "pass": true,
+      "detail": "fixed probe constant at all 41 positions of a 40-item sequence"
+    },
+    "T5_context_isolation": {
+      "pass": true,
+      "detail": "irreversible-context effect is per-call only; no bleed via None, {}, or mutated shared dict"
+    },
+    "T6_static_state_surface": {
+      "pass": true,
+      "detail": "imports limited to re/typing/hashlib/time; no open/eval/exec; no global statements; pattern lists never mutated at runtime. time is used only for the declared attestation timestamp (see T9)"
+    },
+    "T7_filesystem_diff": {
+      "pass": true,
+      "detail": "zero file deltas in harness dir across full-corpus evaluation (bytecode caches excluded by design; see doc)"
+    },
+    "T8_clean_room_differential": {
+      "pass": true,
+      "detail": "corpus verdicts identical in-process, in a fresh process, and in a stripped env with foreign cwd and nonexistent HOME"
+    },
+    "T9_timestamp_scope": {
+      "pass": true,
+      "detail": "across a 2.2s gap only the declared timestamp field changed; all verdict fields invariant"
+    }
+  },
+  "all_pass": true,
+  "corpus_verdict_hash": "40e3620a78ca703e"
+}
